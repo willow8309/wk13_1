@@ -1,0 +1,1939 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Pronunciation Lab</title>
+<style>
+:root {
+  --navy: #14243b;
+  --blue: #4263eb;
+  --light: #eef2ff;
+  --green: #16865c;
+  --red: #dc4455;
+  --orange: #b7791f;
+  --border: #e1e6ef;
+  --muted: #748094;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #f3f6fb;
+  color: var(--navy);
+  font-family: Arial, "Malgun Gothic", sans-serif;
+}
+header {
+  background: linear-gradient(120deg, #14243b, #294b83);
+  color: white;
+  padding: 32px 20px;
+}
+.header-inner {
+  max-width: 1000px;
+  margin: auto;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  opacity: .75;
+}
+h1 {
+  font-size: clamp(25px, 5vw, 38px);
+  margin: 10px 0;
+}
+header p {
+  font-size: 14px;
+  color: #d2def4;
+  margin-bottom: 0;
+}
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 24px 16px 60px;
+}
+button, input, select, textarea {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: .18s;
+}
+button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(.96);
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+.primary {
+  color: white;
+  background: var(--blue);
+}
+.secondary {
+  background: var(--light);
+  color: #3d55bd;
+}
+.outline {
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--navy);
+}
+.danger {
+  background: var(--red);
+  color: white;
+}
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 18px #14243b06;
+}
+.settings {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.settings label {
+  font-size: 13px;
+  font-weight: bold;
+}
+input, select, textarea {
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 11px;
+  background: white;
+  color: var(--navy);
+}
+input { min-width: 0; }
+textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 110px;
+  line-height: 1.7;
+}
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.tab {
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--navy);
+  padding: 16px 8px;
+  line-height: 1.6;
+  font-size: 12px;
+}
+.tab span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.tab.active {
+  background: var(--blue);
+  color: white;
+  border-color: var(--blue);
+}
+.tab.active span { color: #dce3ff; }
+.progress-track {
+  background: #e9edf4;
+  border-radius: 20px;
+  height: 8px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.progress-fill {
+  background: var(--blue);
+  height: 100%;
+  width: 0;
+  transition: width .3s;
+}
+.between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.tag {
+  display: inline-block;
+  background: var(--light);
+  color: #3d55bd;
+  font-size: 12px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.target-box {
+  text-align: center;
+  padding: 34px 8px 25px;
+}
+.target {
+  font-size: clamp(25px, 5vw, 43px);
+  font-weight: bold;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.ipa {
+  color: var(--blue);
+  font-size: 21px;
+  margin-top: 12px;
+}
+.meaning {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 10px;
+}
+.button-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 15px 0;
+}
+.tip {
+  background: #f5f7fb;
+  border-left: 4px solid var(--blue);
+  padding: 18px;
+  border-radius: 6px;
+  line-height: 1.8;
+  font-size: 14px;
+  white-space: pre-line;
+}
+.compare {
+  background: #fff8eb;
+  color: #855d20;
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+.mic-area {
+  text-align: center;
+  padding: 24px 10px;
+}
+.mic {
+  width: 90px;
+  height: 90px;
+  background: var(--blue);
+  color: white;
+  border-radius: 50%;
+  font-size: 34px;
+  box-shadow: 0 0 0 9px #4263eb13;
+}
+.mic.recording {
+  background: var(--red);
+  animation: pulse 1.2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 9px #dc445522; }
+  50% { box-shadow: 0 0 0 20px #dc445510; }
+}
+.wave {
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+}
+.wave span {
+  background: #c8d2e6;
+  height: 5px;
+  width: 4px;
+  border-radius: 5px;
+}
+.wave.live span {
+  background: var(--blue);
+  animation: wave .65s infinite alternate;
+  animation-delay: var(--delay);
+}
+@keyframes wave {
+  from { height: 5px; }
+  to { height: 30px; }
+}
+#status {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 12px;
+  line-height: 1.7;
+}
+.result {
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
+  margin-top: 15px;
+}
+.score-layout {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.score-ring {
+  --score: 0%;
+  background: conic-gradient(
+    var(--green) var(--score),
+    #e9edf4 0
+  );
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.score-inner {
+  background: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.score-number {
+  font-size: 29px;
+  font-weight: bold;
+}
+.feedback-title {
+  font-size: 21px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.result-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: bold;
+  margin: 20px 0 8px;
+}
+.transcript {
+  background: #f5f7fb;
+  padding: 15px;
+  border-radius: 10px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.word-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  line-height: 1.7;
+}
+.word {
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.correct {
+  background: #e0f5eb;
+  color: var(--green);
+}
+.incorrect {
+  background: #ffe7e9;
+  color: var(--red);
+  text-decoration: underline;
+}
+.missing {
+  background: #fff0d5;
+  color: var(--orange);
+  border: 1px dashed #dba64d;
+}
+.extra {
+  background: #edf0f5;
+  color: #6c7482;
+}
+.feedback-box {
+  padding: 15px;
+  margin-top: 16px;
+  border-radius: 10px;
+  background: #f5f7fb;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.legend {
+  font-size: 11px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.stat {
+  background: #f5f7fb;
+  padding: 18px 10px;
+  text-align: center;
+  border-radius: 12px;
+}
+.stat strong {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 7px;
+}
+.stat span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 13px;
+}
+th, td {
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background: #f5f7fb;
+  white-space: nowrap;
+}
+.notice {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  background: #edf1f7;
+  border-radius: 10px;
+  padding: 15px;
+}
+h2 {
+  font-size: 18px;
+  margin-top: 0;
+}
+[hidden] { display: none !important; }
+@media(max-width: 600px) {
+  .card { padding: 17px; }
+  .tabs { gap: 4px; }
+  .tab { font-size: 10px; padding: 12px 3px; }
+  .settings { align-items: stretch; }
+  .settings input { width: 100%; }
+  .score-layout { justify-content: center; text-align: center; }
+  .button-row button { padding: 12px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">LISTEN · SPEAK · IMPROVE</div>
+    <h1>English Pronunciation Lab</h1>
+    <p>Listen carefully. Speak confidently. Practice every day.</p>
+  </div>
+</header>
+
+<main>
+  <section class="card settings">
+    <label for="studentName">STUDENT</label>
+    <input id="studentName" placeholder="학생 이름" maxlength="30">
+    <label for="accent">ACCENT</label>
+    <select id="accent">
+      <option value="en-US">American English</option>
+      <option value="en-GB">British English</option>
+    </select>
+    <label for="voiceSelect">VOICE</label>
+    <select id="voiceSelect">
+      <option value="">Default voice</option>
+    </select>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-step="0">
+      <span>STEP 01</span>소리 구별
+    </button>
+    <button class="tab" data-step="1">
+      <span>STEP 02</span>단어 강세
+    </button>
+    <button class="tab" data-step="2">
+      <span>STEP 03</span>연음·약형
+    </button>
+    <button class="tab" data-step="3">
+      <span>STEP 04</span>문장 리듬
+    </button>
+    <button class="tab" data-step="4">
+      <span>STEP 05</span>자유 연습
+    </button>
+  </nav>
+
+  <section class="card" id="customPanel" hidden>
+    <h2>My Speaking Text</h2>
+    <p class="small">
+      교과서 본문, 수행평가 문장 또는 연습할 영어 문장을 입력하세요.
+      한 번에 250자 이내의 짧은 문장을 권장합니다.
+    </p>
+    <textarea id="customText" maxlength="250"
+      placeholder="Enter your English sentence here..."></textarea>
+    <div class="button-row">
+      <button class="primary" id="applyCustom">
+        연습 문장 설정
+      </button>
+    </div>
+  </section>
+
+  <section class="card" id="practiceCard">
+    <div class="between">
+      <span class="tag" id="category"></span>
+      <span class="small" id="progressText"></span>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="target-box">
+      <div class="target" id="targetText"></div>
+      <div class="ipa" id="ipaText"></div>
+      <div class="meaning" id="meaningText"></div>
+    </div>
+
+    <div class="button-row">
+      <button class="primary" id="listenNormal">
+        🔊 Listen
+      </button>
+      <button class="secondary" id="listenSlow">
+        🐢 Slow
+      </button>
+      <button class="outline" id="listenRepeat">
+        ↻ 3 Times
+      </button>
+    </div>
+
+    <div class="tip" id="pronunciationTip"></div>
+
+    <div class="compare" id="compareBox" hidden>
+      <div class="between">
+        <span id="compareText"></span>
+        <button class="outline" id="compareButton">
+          🔊 비교 듣기
+        </button>
+      </div>
+    </div>
+
+    <div class="mic-area">
+      <p><strong>Now, it's your turn!</strong></p>
+      <button class="mic" id="micButton"
+        aria-label="발음 녹음 시작 또는 종료">🎙</button>
+
+      <div class="wave" id="wave"></div>
+
+      <div id="status" role="status">
+        마이크 버튼을 누르고 영어로 읽어 보세요.
+      </div>
+
+      <div class="button-row">
+        <button class="outline" id="stopButton" disabled>
+          ■ Stop
+        </button>
+      </div>
+
+      <div id="recordingPanel" hidden>
+        <p class="small">My Recording · 내 발음 다시 듣기</p>
+        <audio id="myAudio" controls></audio>
+      </div>
+    </div>
+
+    <section class="result" id="resultPanel" hidden>
+      <div class="score-layout">
+        <div class="score-ring" id="scoreRing">
+          <div class="score-inner">
+            <div class="score-number" id="scoreNumber">0%</div>
+            <span class="small">단어 일치율</span>
+          </div>
+        </div>
+        <div style="flex:1; min-width:180px">
+          <div class="feedback-title" id="feedbackTitle"></div>
+          <div class="small" id="feedbackSummary"></div>
+        </div>
+      </div>
+
+      <div class="result-label">WHAT YOU SAID · 음성 인식 결과</div>
+      <div class="transcript" id="recognizedText"></div>
+
+      <div class="result-label">WORD CHECK · 단어별 비교</div>
+      <div class="word-line" id="wordResult"></div>
+
+      <div class="legend">
+        <span style="color:#16865c">● 일치</span>
+        <span style="color:#dc4455">● 다르게 인식</span>
+        <span style="color:#b7791f">● 누락</span>
+        <span style="color:#748094">● 추가 단어</span>
+      </div>
+
+      <div class="feedback-box" id="feedbackBox"></div>
+
+      <div class="button-row">
+        <button class="secondary" id="retryButton">
+          ↻ Try Again
+        </button>
+        <button class="primary" id="resultNext">
+          Next →
+        </button>
+      </div>
+    </section>
+
+    <div class="between" style="border-top:1px solid #eee;padding-top:18px">
+      <button class="outline" id="prevButton">← Previous</button>
+      <button class="primary" id="nextButton">Next →</button>
+    </div>
+  </section>
+
+  <section class="card" id="completePanel" hidden>
+    <div style="text-align:center;padding:20px">
+      <div style="font-size:52px">🏆</div>
+      <h2>Practice Complete!</h2>
+      <p id="completeMessage"></p>
+      <div class="button-row">
+        <button class="secondary" id="reviewButton">
+          다시 연습하기
+        </button>
+        <button class="primary" id="nextStepButton">
+          다음 단계 →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="between">
+      <h2 style="margin:0">My Progress</h2>
+      <button class="outline" id="downloadButton">
+        ↓ CSV 저장
+      </button>
+    </div>
+
+    <div class="stats" style="margin-top:18px">
+      <div class="stat">
+        <strong id="totalAttempts">0</strong>
+        <span>총 연습 횟수</span>
+      </div>
+      <div class="stat">
+        <strong id="averageScore">—</strong>
+        <span>평균 단어 일치율</span>
+      </div>
+      <div class="stat">
+        <strong id="bestScore">—</strong>
+        <span>최고 단어 일치율</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>시간</th>
+            <th>학생</th>
+            <th>단계</th>
+            <th>연습 내용</th>
+            <th>일치율</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </div>
+
+    <div class="button-row" style="justify-content:flex-end">
+      <button class="outline" id="clearHistory">
+        기록 초기화
+      </button>
+    </div>
+  </section>
+
+  <div class="notice">
+    <strong>사용 안내</strong><br>
+    이 앱은 브라우저의 음성 합성 및 음성 인식 기능을 사용합니다.
+    음성 인식 과정에서 브라우저 제공자의 서버로 음성이 전송될 수 있으며
+    인터넷 연결이 필요할 수 있습니다.
+    음성 재생 품질은 설치된 음성에 따라 다릅니다.
+    IPA는 대표적인 미국식 발음을 기준으로 합니다.
+    단어 일치율은 음성 인식 결과와 목표 문장의 일치 정도이며,
+    개별 음소의 정확성, 강세, 억양을 직접 측정하는 점수가 아닙니다.
+    연습 기록은 현재 브라우저에 저장되며 녹음 파일은
+    페이지를 벗어나면 유지되지 않습니다.
+  </div>
+</main>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+
+const stepNames = [
+  "소리 구별",
+  "단어 강세",
+  "연음·약형",
+  "문장 리듬",
+  "자유 연습"
+];
+
+const lessons = [
+  [
+    {
+      text: "right",
+      ipa: "/raɪt/",
+      meaning: "오른쪽, 올바른",
+      category: "R vs. L",
+      compare: "light",
+      tip: "R /r/ 발음\n혀끝을 윗잇몸에 붙이지 마세요. 혀를 뒤로 살짝 당기고 입술을 약간 둥글게 만들어 발음하세요."
+    },
+    {
+      text: "light",
+      ipa: "/laɪt/",
+      meaning: "빛, 가벼운",
+      category: "L vs. R",
+      compare: "right",
+      tip: "L /l/ 발음\n혀끝을 윗니 바로 뒤쪽 잇몸에 가볍게 붙였다가 떼면서 발음하세요."
+    },
+    {
+      text: "ship",
+      ipa: "/ʃɪp/",
+      meaning: "배",
+      category: "Short vowel /ɪ/",
+      compare: "sheep",
+      tip: "/ɪ/는 짧고 힘을 뺀 모음입니다. 입술을 지나치게 옆으로 벌리지 마세요. sheep보다 짧고 느슨하게 발음하세요."
+    },
+    {
+      text: "sheep",
+      ipa: "/ʃiːp/",
+      meaning: "양",
+      category: "Long vowel /iː/",
+      compare: "ship",
+      tip: "/iː/는 혀의 위치가 높고 앞쪽에 있습니다. 입술을 살짝 옆으로 벌리며 ship보다 길고 선명하게 발음하세요."
+    },
+    {
+      text: "fan",
+      ipa: "/fæn/",
+      meaning: "선풍기, 팬",
+      category: "F vs. P",
+      compare: "pan",
+      tip: "윗니를 아랫입술에 가볍게 대고 공기를 지속적으로 내보내세요. 두 입술을 붙였다 터뜨리는 P 발음과 구별합니다."
+    },
+    {
+      text: "van",
+      ipa: "/væn/",
+      meaning: "승합차",
+      category: "V vs. B",
+      compare: "ban",
+      tip: "윗니와 아랫입술 사이로 공기를 내보내면서 성대를 울리세요. 입술을 완전히 닫지 않습니다."
+    },
+    {
+      text: "think",
+      ipa: "/θɪŋk/",
+      meaning: "생각하다",
+      category: "Voiceless TH",
+      compare: "sink",
+      tip: "혀끝을 윗니와 아랫니 사이에 살짝 내밀고 공기를 내보내세요. 목에 진동이 느껴지지 않는 무성음입니다."
+    },
+    {
+      text: "then",
+      ipa: "/ðen/",
+      meaning: "그때, 그러고 나서",
+      category: "Voiced TH",
+      compare: "den",
+      tip: "혀끝을 치아 사이에 살짝 놓고 공기를 내보내면서 성대를 울리세요. think의 TH와 조음 위치는 같지만 유성음입니다."
+    },
+    {
+      text: "bad",
+      ipa: "/bæd/",
+      meaning: "나쁜",
+      category: "/æ/ vs. /e/",
+      compare: "bed",
+      tip: "/æ/는 /e/보다 턱을 더 내리고 입을 넓게 벌려 발음합니다."
+    },
+    {
+      text: "full",
+      ipa: "/fʊl/",
+      meaning: "가득 찬",
+      category: "/ʊ/ vs. /uː/",
+      compare: "fool",
+      tip: "/ʊ/는 짧고 느슨한 모음입니다. 입술을 지나치게 앞으로 내밀지 마세요."
+    },
+    {
+      text: "rice",
+      ipa: "/raɪs/",
+      meaning: "쌀, 밥",
+      category: "Final /s/",
+      compare: "rise",
+      tip: "마지막 /s/에서 성대를 울리지 않고 공기를 내보냅니다. 뒤에 불필요한 모음을 붙이지 마세요."
+    },
+    {
+      text: "rise",
+      ipa: "/raɪz/",
+      meaning: "오르다",
+      category: "Final /z/",
+      compare: "rice",
+      tip: "마지막 /z/는 성대 진동이 있는 유성 마찰음입니다. rice와 구별하면서 연습하세요."
+    }
+  ],
+  [
+    {
+      text: "comfortable",
+      ipa: "/ˈkʌmftəbəl/",
+      meaning: "편안한",
+      category: "Word Stress",
+      tip: "COM-for-ta-ble\n첫 음절에 강세가 있습니다. 미국 영어에서는 가운데 음절이 약화되어 전체 단어가 짧게 들릴 수 있습니다."
+    },
+    {
+      text: "development",
+      ipa: "/dɪˈveləpmənt/",
+      meaning: "발달, 발전",
+      category: "Second Syllable Stress",
+      tip: "de-VEL-op-ment\n두 번째 음절 VEL을 강조하고 나머지 음절은 상대적으로 약하게 발음하세요."
+    },
+    {
+      text: "education",
+      ipa: "/ˌedʒəˈkeɪʃən/",
+      meaning: "교육",
+      category: "Primary Stress",
+      tip: "ed-u-CA-tion\nCA 부분에 가장 강한 강세를 두세요. 마지막 -tion은 약한 /ʃən/으로 발음합니다."
+    },
+    {
+      text: "important",
+      ipa: "/ɪmˈpɔːrtənt/",
+      meaning: "중요한",
+      category: "Second Syllable Stress",
+      tip: "im-POR-tant\nPOR에 강세를 두고 마지막 음절의 모음을 약하게 발음하세요."
+    },
+    {
+      text: "information",
+      ipa: "/ˌɪnfərˈmeɪʃən/",
+      meaning: "정보",
+      category: "Primary Stress",
+      tip: "in-for-MA-tion\nMA에 가장 강한 강세를 둡니다. 모든 음절을 똑같은 길이로 읽지 마세요."
+    },
+    {
+      text: "photograph",
+      ipa: "/ˈfoʊtəɡræf/",
+      meaning: "사진",
+      category: "Stress Shift",
+      compare: "photography",
+      tip: "PHO-to-graph\n첫 음절을 강조합니다. photography에서는 강세 위치가 달라집니다."
+    },
+    {
+      text: "photography",
+      ipa: "/fəˈtɑːɡrəfi/",
+      meaning: "사진 촬영",
+      category: "Stress Shift",
+      compare: "photograph",
+      tip: "pho-TOG-ra-phy\n두 번째 음절에 강세가 있습니다. 첫 음절은 약한 슈와 /ə/ 소리입니다."
+    },
+    {
+      text: "environment",
+      ipa: "/ɪnˈvaɪrənmənt/",
+      meaning: "환경",
+      category: "Word Stress",
+      tip: "en-VI-ron-ment\nVI에 강세를 두고 뒤의 두 음절은 가볍게 이어 읽으세요."
+    },
+    {
+      text: "opportunity",
+      ipa: "/ˌɑːpərˈtuːnəti/",
+      meaning: "기회",
+      category: "Primary Stress",
+      tip: "op-por-TU-ni-ty\nTU 부분에 가장 강한 강세가 있습니다."
+    },
+    {
+      text: "pronunciation",
+      ipa: "/prəˌnʌnsiˈeɪʃən/",
+      meaning: "발음",
+      category: "Primary Stress",
+      tip: "pro-nun-ci-A-tion\nA에 가장 강한 강세가 있습니다. pronounce의 모음을 그대로 유지하지 않도록 주의하세요."
+    }
+  ],
+  [
+    {
+      text: "Pick it up.",
+      meaning: "그것을 집어 올려.",
+      category: "Consonant + Vowel",
+      tip: "pick‿it‿up\n앞 단어의 마지막 자음과 다음 단어의 첫 모음을 끊지 말고 자연스럽게 연결하세요."
+    },
+    {
+      text: "Turn it off.",
+      meaning: "그것을 꺼.",
+      category: "Linking",
+      tip: "turn‿it‿off\n세 단어 사이에 불필요한 휴지를 넣지 마세요. 미국식 발음에서는 it의 t가 약해질 수 있습니다."
+    },
+    {
+      text: "An apple a day.",
+      meaning: "하루에 사과 하나.",
+      category: "Linking",
+      tip: "an‿apple / a day\nan의 마지막 n을 apple의 첫 모음에 자연스럽게 연결하세요."
+    },
+    {
+      text: "A cup of tea.",
+      meaning: "차 한 잔",
+      category: "Weak Forms",
+      tip: "a CUP of TEA\n관사 a는 보통 /ə/, of는 약형 /əv/로 발음합니다. CUP과 TEA를 상대적으로 강조하세요."
+    },
+    {
+      text: "I can do it.",
+      meaning: "나는 그것을 할 수 있어.",
+      category: "Weak Form of CAN",
+      tip: "I can DO‿it.\ncan에 특별한 대조 강세가 없다면 /kən/으로 약하게 읽을 수 있습니다."
+    },
+    {
+      text: "I want to go home.",
+      meaning: "나는 집에 가고 싶어.",
+      category: "Reduction",
+      tip: "I WANT to go HOME.\nto는 일반적으로 /tə/로 약화됩니다. 모든 단어에 같은 강세를 주지 마세요."
+    },
+    {
+      text: "Did you see it?",
+      meaning: "그것을 봤니?",
+      category: "Assimilation",
+      tip: "Did you SEE‿it?\n자연스러운 빠른 발화에서 did you의 /d/와 /j/가 만나 /dʒ/처럼 들릴 수 있습니다."
+    },
+    {
+      text: "Would you help me?",
+      meaning: "저를 도와주시겠어요?",
+      category: "Assimilation",
+      tip: "Would you HELP me?\nwould you는 자연스러운 연결 발화에서 /wʊdʒə/처럼 발음되기도 합니다."
+    },
+    {
+      text: "What are you doing?",
+      meaning: "뭐 하고 있니?",
+      category: "Connected Speech",
+      tip: "WHAT are you DOing?\nare와 you는 자연스러운 문장 속에서 상대적으로 약하게 발음될 수 있습니다."
+    },
+    {
+      text: "Take a look at it.",
+      meaning: "그것을 한번 봐.",
+      category: "Connected Speech",
+      tip: "take‿a LOOK‿at‿it\n자음과 모음 사이를 부드럽게 연결하고 LOOK에 강세를 두세요."
+    }
+  ],
+  [
+    {
+      text: "What are you going to do?",
+      meaning: "너는 무엇을 할 예정이니?",
+      category: "WH-question Intonation",
+      tip: "WHAT are you going to DO? ↘\n일반적인 의문사 의문문은 문장 끝에서 음높이가 내려가는 경우가 많습니다."
+    },
+    {
+      text: "Are you ready?",
+      meaning: "준비됐니?",
+      category: "Yes / No Question",
+      tip: "Are you READy? ↗\n중립적인 Yes/No 의문문에서는 문장 끝의 음높이를 올려 연습해 보세요."
+    },
+    {
+      text: "I really enjoyed the movie.",
+      meaning: "나는 그 영화를 정말 재미있게 봤어.",
+      category: "Sentence Stress",
+      tip: "I REALLY enJOYED the MOVIE.\n내용을 전달하는 핵심 단어를 강조하고 대명사와 관사는 가볍게 읽으세요."
+    },
+    {
+      text: "She has been studying English for three years.",
+      meaning: "그녀는 3년 동안 영어를 공부해 왔다.",
+      category: "Rhythm",
+      tip: "She has been STUDying ENGLISH / for THREE YEARS.\n강세가 있는 음절과 약한 음절의 차이를 느끼며 의미 단위로 읽으세요."
+    },
+    {
+      text: "Although it was raining, we went outside.",
+      meaning: "비가 오고 있었지만 우리는 밖으로 나갔다.",
+      category: "Thought Groups",
+      tip: "Although it was RAINING / we went OUTSIDE.\n종속절과 주절 사이에 짧은 휴지를 두고 문장 끝에서 자연스럽게 음높이를 내리세요."
+    },
+    {
+      text: "If I were you, I would tell the truth.",
+      meaning: "내가 너라면 사실을 말할 텐데.",
+      category: "Thought Groups",
+      tip: "If I were YOU / I would tell the TRUTH.\n조건절과 주절을 의미 단위로 나누어 발음하세요."
+    },
+    {
+      text: "The book that I borrowed was really interesting.",
+      meaning: "내가 빌린 책은 정말 흥미로웠다.",
+      category: "Relative Clause",
+      tip: "The BOOK that I BORROWED / was really INTERESTING.\n제한적 관계절인 that I borrowed를 선행사와 연결하여 읽으세요."
+    },
+    {
+      text: "My brother, who lives in London, is a teacher.",
+      meaning: "런던에 사는 내 남동생 또는 형은 교사이다.",
+      category: "Non-restrictive Relative Clause",
+      tip: "My BROTHER / who lives in LONDON / is a TEACHER.\n계속적 용법의 관계절 앞뒤에서 짧게 쉬거나 억양을 바꾸어 부가 정보를 표현하세요."
+    },
+    {
+      text: "I like apples, oranges, and bananas.",
+      meaning: "나는 사과, 오렌지, 바나나를 좋아한다.",
+      category: "List Intonation",
+      tip: "APPLES ↗ / ORANGES ↗ / and BANANAS ↘\n나열할 때 중간 항목은 음높이를 올리고 마지막 항목에서는 내려 보세요."
+    },
+    {
+      text: "The more you practice, the better you become.",
+      meaning: "연습을 많이 할수록 더 잘하게 된다.",
+      category: "Sentence Rhythm",
+      tip: "The MORE you PRACTICE / the BETTER you BECOME.\n두 절의 평행 구조를 살리며 핵심 단어에 강세를 두세요."
+    }
+  ]
+];
+
+let customLesson = {
+  text: "Practice makes perfect.",
+  meaning: "연습이 완벽을 만든다.",
+  category: "Free Speaking",
+  tip: "먼저 전체 문장을 듣고 의미 단위로 나누세요. 핵심 단어에 강세를 두고 기능어는 상대적으로 가볍게 발음하세요."
+};
+
+const STORAGE_KEY = "pronunciation_lab_v1";
+let history = [];
+let step = 0;
+let questionIndex = 0;
+let attempted = new Set();
+let busy = false;
+let recognition = null;
+let recorder = null;
+let stream = null;
+let audioURL = null;
+let recordingTimer = null;
+let speechSequence = 0;
+let voices = [];
+let activeSession = 0;
+
+try {
+  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+  history = Array.isArray(stored.history) ? stored.history : [];
+  $("studentName").value = stored.name || "";
+  $("accent").value = stored.accent === "en-GB" ? "en-GB" : "en-US";
+} catch (e) {
+  history = [];
+}
+
+function saveData() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      name: $("studentName").value.trim(),
+      accent: $("accent").value,
+      history
+    }));
+  } catch (e) {
+    $("status").textContent = "브라우저 저장 공간을 사용할 수 없습니다.";
+  }
+}
+
+function getLesson() {
+  return step === 4
+    ? customLesson
+    : lessons[step][questionIndex];
+}
+
+function totalQuestions() {
+  return step === 4 ? 1 : lessons[step].length;
+}
+
+function refreshVoices() {
+  if (!("speechSynthesis" in window)) return;
+
+  voices = speechSynthesis.getVoices();
+  const selectedLocale = $("accent").value;
+  const previous = $("voiceSelect").value;
+  $("voiceSelect").replaceChildren();
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Default voice";
+  $("voiceSelect").appendChild(defaultOption);
+
+  let matches = voices.filter(v =>
+    v.lang.toLowerCase() === selectedLocale.toLowerCase()
+  );
+
+  if (!matches.length) {
+    matches = voices.filter(v =>
+      v.lang.toLowerCase().startsWith("en")
+    );
+  }
+
+  matches.forEach(v => {
+    const option = document.createElement("option");
+    option.value = v.voiceURI;
+    option.textContent = `${v.name} (${v.lang})`;
+    $("voiceSelect").appendChild(option);
+  });
+
+  if (Array.from($("voiceSelect").options)
+      .some(o => o.value === previous)) {
+    $("voiceSelect").value = previous;
+  }
+}
+
+if ("speechSynthesis" in window) {
+  refreshVoices();
+  speechSynthesis.onvoiceschanged = refreshVoices;
+}
+
+function cancelSpeech() {
+  speechSequence++;
+  if ("speechSynthesis" in window) {
+    speechSynthesis.cancel();
+  }
+}
+
+function speak(text, rate = 1, count = 1) {
+  if (busy) return;
+
+  if (!("speechSynthesis" in window)) {
+    $("status").textContent = "이 브라우저는 음성 재생을 지원하지 않습니다.";
+    return;
+  }
+
+  cancelSpeech();
+
+  const sequence = speechSequence;
+  let remaining = count;
+
+  function play() {
+    if (sequence !== speechSequence || busy) return;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = $("accent").value;
+    utterance.rate = rate;
+    utterance.pitch = 1;
+
+    const voice = voices.find(v =>
+      v.voiceURI === $("voiceSelect").value
+    ) || voices.find(v =>
+      v.lang.toLowerCase() === utterance.lang.toLowerCase()
+    );
+
+    if (voice) utterance.voice = voice;
+
+    utterance.onstart = () => {
+      $("status").textContent = "모델 발음을 듣는 중입니다...";
+    };
+
+    utterance.onend = () => {
+      if (sequence !== speechSequence) return;
+      remaining--;
+
+      if (remaining > 0) {
+        setTimeout(play, 700);
+      } else {
+        $("status").textContent = "이제 마이크를 누르고 따라 읽으세요.";
+      }
+    };
+
+    utterance.onerror = () => {
+      if (sequence === speechSequence) {
+        $("status").textContent = "음성 재생에 실패했습니다. 다른 음성을 선택하세요.";
+      }
+    };
+
+    speechSynthesis.speak(utterance);
+  }
+
+  play();
+}
+
+function speakComparison() {
+  const lesson = getLesson();
+  if (!lesson.compare || busy) return;
+
+  cancelSpeech();
+
+  const sequence = speechSequence;
+  const phrases = [lesson.text, lesson.compare, lesson.text];
+
+  function next(i) {
+    if (i >= phrases.length ||
+        busy ||
+        sequence !== speechSequence) return;
+
+    if (!("speechSynthesis" in window)) return;
+
+    const u = new SpeechSynthesisUtterance(phrases[i]);
+    u.lang = $("accent").value;
+    u.rate = 0.85;
+
+    const voice = voices.find(v =>
+      v.voiceURI === $("voiceSelect").value
+    );
+
+    if (voice) u.voice = voice;
+
+    u.onend = () => {
+      setTimeout(() => next(i + 1), 650);
+    };
+
+    speechSynthesis.speak(u);
+  }
+
+  next(0);
+}
+
+for (let i = 0; i < 21; i++) {
+  const bar = document.createElement("span");
+  bar.style.setProperty("--delay", `${(i % 7) * .09}s`);
+  $("wave").appendChild(bar);
+}
+
+function clearAudio() {
+  $("myAudio").pause();
+  $("myAudio").removeAttribute("src");
+  $("myAudio").load();
+
+  if (audioURL) {
+    URL.revokeObjectURL(audioURL);
+    audioURL = null;
+  }
+
+  $("recordingPanel").hidden = true;
+}
+
+function renderQuestion() {
+  cancelSpeech();
+  clearAudio();
+
+  const lesson = getLesson();
+
+  $("practiceCard").hidden = false;
+  $("completePanel").hidden = true;
+  $("customPanel").hidden = step !== 4;
+  $("category").textContent = lesson.category;
+  $("targetText").textContent = lesson.text;
+  $("ipaText").textContent = lesson.ipa || "";
+  $("meaningText").textContent = lesson.meaning || "";
+  $("pronunciationTip").textContent = lesson.tip;
+
+  $("progressText").textContent =
+    `${questionIndex + 1} / ${totalQuestions()}`;
+
+  $("progressFill").style.width =
+    `${((questionIndex + 1) / totalQuestions()) * 100}%`;
+
+  $("compareBox").hidden = !lesson.compare;
+
+  if (lesson.compare) {
+    $("compareText").textContent =
+      `Compare: ${lesson.text} / ${lesson.compare}`;
+  }
+
+  $("resultPanel").hidden = true;
+  $("prevButton").disabled = questionIndex === 0;
+  $("nextButton").textContent =
+    questionIndex === totalQuestions() - 1
+      ? "Finish ✓"
+      : "Next →";
+
+  $("status").textContent =
+    "마이크 버튼을 누르고 영어로 읽어 보세요.";
+
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.classList.toggle(
+      "active",
+      Number(tab.dataset.step) === step
+    );
+  });
+}
+
+function selectStep(newStep) {
+  if (busy) return;
+
+  step = newStep;
+  questionIndex = 0;
+  attempted = new Set();
+  renderQuestion();
+}
+
+function finishStep() {
+  cancelSpeech();
+
+  $("practiceCard").hidden = true;
+  $("completePanel").hidden = false;
+
+  $("completeMessage").textContent =
+    `${stepNames[step]} 단계의 ${totalQuestions()}개 항목 중 ` +
+    `${attempted.size}개 항목에서 음성 인식을 완료했습니다.`;
+
+  $("nextStepButton").hidden = step === 4;
+}
+
+function nextQuestion() {
+  if (busy) return;
+
+  if (questionIndex < totalQuestions() - 1) {
+    questionIndex++;
+    renderQuestion();
+  } else {
+    finishStep();
+  }
+}
+
+function previousQuestion() {
+  if (busy || questionIndex === 0) return;
+  questionIndex--;
+  renderQuestion();
+}
+
+/* Normalize punctuation and capitalization.
+   Contractions are preserved as individual words. */
+function tokenize(text) {
+  return text.toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .match(/[a-z0-9]+(?:'[a-z]+)*/g) || [];
+}
+
+/* Levenshtein alignment for substitutions,
+   deletions and insertions. */
+function alignWords(expected, spoken) {
+  const n = expected.length;
+  const m = spoken.length;
+
+  const dp = Array.from(
+    { length: n + 1 },
+    () => Array(m + 1).fill(0)
+  );
+
+  for (let i = 0; i <= n; i++) dp[i][0] = i;
+  for (let j = 0; j <= m; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= m; j++) {
+      const cost = expected[i - 1] === spoken[j - 1] ? 0 : 1;
+
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + cost
+      );
+    }
+  }
+
+  const alignment = [];
+  let i = n;
+  let j = m;
+
+  while (i > 0 || j > 0) {
+    if (
+      i > 0 && j > 0 &&
+      expected[i - 1] === spoken[j - 1] &&
+      dp[i][j] === dp[i - 1][j - 1]
+    ) {
+      alignment.push({
+        type: "correct",
+        expected: expected[i - 1],
+        spoken: spoken[j - 1]
+      });
+      i--;
+      j--;
+    } else if (
+      i > 0 && j > 0 &&
+      dp[i][j] === dp[i - 1][j - 1] + 1
+    ) {
+      alignment.push({
+        type: "incorrect",
+        expected: expected[i - 1],
+        spoken: spoken[j - 1]
+      });
+      i--;
+      j--;
+    } else if (
+      i > 0 &&
+      dp[i][j] === dp[i - 1][j] + 1
+    ) {
+      alignment.push({
+        type: "missing",
+        expected: expected[i - 1]
+      });
+      i--;
+    } else {
+      alignment.push({
+        type: "extra",
+        spoken: spoken[j - 1]
+      });
+      j--;
+    }
+  }
+
+  return {
+    alignment: alignment.reverse(),
+    distance: dp[n][m]
+  };
+}
+
+function analyzeSpeech(transcript) {
+  const lesson = getLesson();
+  const expected = tokenize(lesson.text);
+  const spoken = tokenize(transcript);
+
+  if (!expected.length || !spoken.length) {
+    $("status").textContent =
+      "영어 단어가 인식되지 않았습니다. 다시 읽어 주세요.";
+    return;
+  }
+
+  const { alignment, distance } = alignWords(expected, spoken);
+
+  const score = Math.max(
+    0,
+    Math.round((1 - distance / expected.length) * 100)
+  );
+
+  const matched = alignment.filter(
+    w => w.type === "correct"
+  ).length;
+
+  const wrong = alignment.filter(
+    w => w.type === "incorrect"
+  );
+
+  const missing = alignment.filter(
+    w => w.type === "missing"
+  );
+
+  const extra = alignment.filter(
+    w => w.type === "extra"
+  );
+
+  $("resultPanel").hidden = false;
+  $("scoreNumber").textContent = `${score}%`;
+  $("scoreRing").style.setProperty("--score", `${score}%`);
+  $("recognizedText").textContent = transcript;
+
+  $("feedbackSummary").textContent =
+    `목표 단어 ${expected.length}개 중 ${matched}개가 일치합니다.`;
+
+  let title;
+
+  if (score === 100) {
+    title = "Excellent! 🌟";
+  } else if (score >= 80) {
+    title = "Great job!";
+  } else if (score >= 50) {
+    title = "Keep practicing!";
+  } else {
+    title = "Let's try again!";
+  }
+
+  $("feedbackTitle").textContent = title;
+  $("wordResult").replaceChildren();
+
+  alignment.forEach(item => {
+    const span = document.createElement("span");
+    span.className = `word ${item.type}`;
+
+    if (item.type === "incorrect") {
+      span.textContent =
+        `${item.expected} → ${item.spoken}`;
+      span.title = "목표 단어 → 실제 인식된 단어";
+    } else if (item.type === "missing") {
+      span.textContent = item.expected;
+      span.title = "누락된 것으로 인식된 단어";
+    } else if (item.type === "extra") {
+      span.textContent = `+ ${item.spoken}`;
+      span.title = "추가로 인식된 단어";
+    } else {
+      span.textContent = item.expected;
+    }
+
+    $("wordResult").appendChild(span);
+  });
+
+  const feedback = [];
+
+  if (score === 100) {
+    feedback.push("모든 단어가 목표 문장과 일치하게 인식되었습니다.");
+    feedback.push("모델 음성과 자신의 녹음을 비교하며 강세와 리듬도 확인하세요.");
+  }
+
+  if (wrong.length) {
+    feedback.push(
+      "다르게 인식된 단어: " +
+      wrong.map(w => `${w.expected} → ${w.spoken}`).join(", ")
+    );
+  }
+
+  if (missing.length) {
+    feedback.push(
+      "누락된 것으로 인식된 단어: " +
+      missing.map(w => w.expected).join(", ")
+    );
+  }
+
+  if (extra.length) {
+    feedback.push(
+      "추가로 인식된 단어: " +
+      extra.map(w => w.spoken).join(", ")
+    );
+  }
+
+  if (score < 100) {
+    feedback.push(
+      "표시된 단어의 모델 발음을 천천히 듣고 다시 읽으세요. 주변 소음이나 음성 인식 오류가 결과에 영향을 줄 수 있습니다."
+    );
+  }
+
+  feedback.push("발음 연습 포인트: " + lesson.tip);
+
+  $("feedbackBox").replaceChildren();
+
+  feedback.forEach(message => {
+    const p = document.createElement("p");
+    p.style.margin = "7px 0";
+    p.style.whiteSpace = "pre-line";
+    p.textContent = message;
+    $("feedbackBox").appendChild(p);
+  });
+
+  attempted.add(questionIndex);
+
+  history.push({
+    time: new Date().toISOString(),
+    student: $("studentName").value.trim() || "Student",
+    step: stepNames[step],
+    target: lesson.text,
+    transcript,
+    score
+  });
+
+  saveData();
+  renderHistory();
+}
+
+function setBusy(value) {
+  busy = value;
+
+  $("micButton").classList.toggle("recording", value);
+  $("micButton").textContent = value ? "■" : "🎙";
+  $("wave").classList.toggle("live", value);
+  $("stopButton").disabled = !value;
+
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.disabled = value;
+  });
+
+  [
+    "listenNormal", "listenSlow", "listenRepeat",
+    "compareButton", "nextButton", "resultNext",
+    "retryButton", "applyCustom", "accent", "voiceSelect",
+    "studentName", "customText", "clearHistory"
+  ].forEach(id => {
+    $(id).disabled = value;
+  });
+
+  $("prevButton").disabled =
+    value || questionIndex === 0;
+}
+
+function stopRecording() {
+  clearTimeout(recordingTimer);
+  recordingTimer = null;
+
+  if (recorder && recorder.state !== "inactive") {
+    try {
+      recorder.stop();
+    } catch (e) {}
+  }
+
+  if (stream) {
+    stream.getTracks().forEach(track => track.stop());
+    stream = null;
+  }
+}
+
+function stopPractice() {
+  if (recognition) {
+    try {
+      recognition.stop();
+    } catch (e) {}
+  } else {
+    stopRecording();
+    setBusy(false);
+  }
+}
+
+function attachRecorder(mediaStream, session) {
+  if (!("MediaRecorder" in window)) {
+    mediaStream.getTracks().forEach(t => t.stop());
+    return;
+  }
+
+  stream = mediaStream;
+  const chunks = [];
+
+  try {
+    recorder = new MediaRecorder(mediaStream);
+
+    recorder.ondataavailable = event => {
+      if (event.data.size) chunks.push(event.data);
+    };
+
+    recorder.onstop = () => {
+      if (!chunks.length || session !== activeSession) return;
+
+      const blob = new Blob(chunks, {
+        type: recorder ? recorder.mimeType : chunks[0].type
+      });
+
+      clearAudio();
+      audioURL = URL.createObjectURL(blob);
+      $("myAudio").src = audioURL;
+      $("recordingPanel").hidden = false;
+    };
+
+    recorder.start();
+  } catch (e) {
+    mediaStream.getTracks().forEach(t => t.stop());
+    stream = null;
+    recorder = null;
+  }
+}
+
+async function startPractice() {
+  if (busy) {
+    stopPractice();
+    return;
+  }
+
+  const Recognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+  if (!Recognition) {
+    $("status").textContent =
+      "이 브라우저는 음성 인식을 지원하지 않습니다. Chrome 또는 지원되는 Edge 환경에서 실행해 주세요.";
+    return;
+  }
+
+  cancelSpeech();
+  clearAudio();
+
+  $("resultPanel").hidden = true;
+  setBusy(true);
+
+  const session = ++activeSession;
+
+  let finalTranscript = "";
+  let interimTranscript = "";
+  let errorMessage = "";
+
+  $("status").textContent = "마이크를 준비하는 중입니다...";
+
+  /* Start optional playback recording.
+     Speech recognition can still operate if recording fails. */
+  if (
+    navigator.mediaDevices &&
+    navigator.mediaDevices.getUserMedia
+  ) {
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then(mediaStream => {
+        if (!busy || session !== activeSession) {
+          mediaStream.getTracks().forEach(t => t.stop());
+          return;
+        }
+        attachRecorder(mediaStream, session);
+      })
+      .catch(() => {
+        // Speech recognition has its own error handling.
+      });
+  }
+
+  recognition = new Recognition();
+  recognition.lang = $("accent").value;
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    if (session !== activeSession) return;
+
+    $("status").textContent =
+      "Listening... 지금 읽어 주세요. 완료하면 Stop을 누르세요.";
+
+    recordingTimer = setTimeout(
+      stopPractice,
+      30000
+    );
+  };
+
+  recognition.onresult = event => {
+    if (session !== activeSession) return;
+
+    finalTranscript = "";
+    interimTranscript = "";
+
+    for (let i = 0; i < event.results.length; i++) {
+      const text = event.results[i][0].transcript;
+
+      if (event.results[i].isFinal) {
+        finalTranscript += text + " ";
+      } else {
+        interimTranscript += text + " ";
+      }
+    }
+
+    $("status").textContent =
+      "인식 중: " +
+      (finalTranscript + interimTranscript).trim();
+  };
+
+  recognition.onerror = event => {
+    if (session !== activeSession) return;
+
+    const messages = {
+      "not-allowed": "마이크 권한을 허용해 주세요. HTTPS 또는 localhost 환경이 필요할 수 있습니다.",
+      "service-not-allowed": "현재 환경에서 음성 인식 서비스가 허용되지 않습니다.",
+      "no-speech": "음성이 감지되지 않았습니다. 마이크 가까이에서 다시 읽어 주세요.",
+      "audio-capture": "마이크를 찾을 수 없습니다. 연결 상태를 확인해 주세요.",
+      "network": "음성 인식 서버에 연결하지 못했습니다. 인터넷 연결을 확인해 주세요.",
+      "aborted": "음성 인식이 중단되었습니다."
+    };
+
+    errorMessage =
+      messages[event.error] ||
+      "음성 인식 중 오류가 발생했습니다.";
+
+    $("status").textContent = errorMessage;
+    stopRecording();
+    setBusy(false);
+  };
+
+  recognition.onend = () => {
+    if (session !== activeSession) return;
+
+    stopRecording();
+    recognition = null;
+    setBusy(false);
+
+    const transcript = finalTranscript.trim();
+
+    if (transcript) {
+      $("status").textContent = "음성 인식이 완료되었습니다.";
+      analyzeSpeech(transcript);
+    } else {
+      $("status").textContent = errorMessage ||
+        "확정된 음성 인식 결과가 없습니다. 다시 연습해 주세요.";
+    }
+  };
+
+  try {
+    recognition.start();
+  } catch (e) {
+    stopRecording();
+    recognition = null;
+    setBusy(false);
+
+    $("status").textContent =
+      "음성 인식을 시작하지 못했습니다. 마이크 권한과 브라우저를 확인하세요.";
+  }
+}
+
+function renderHistory() {
+  const scores = history.map(item => Number(item.score));
+
+  $("totalAttempts").textContent = history.length;
+
+  $("averageScore").textContent = scores.length
+    ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) + "%"
+    : "—";
+
+  $("bestScore").textContent = scores.length
+    ? Math.max(...scores) + "%"
+    : "—";
+
+  const tbody = $("historyBody");
+  tbody.replaceChildren();
+
+  if (!history.length) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+
+    td.colSpan = 5;
+    td.textContent = "아직 연습 기록이 없습니다.";
+    td.style.textAlign = "center";
+    td.style.color = "#748094";
+
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+    return;
+  }
+
+  history.slice().reverse().slice(0, 30).forEach(item => {
+    const tr = document.createElement("tr");
+
+    const values = [
+      new Date(item.time).toLocaleString("ko-KR"),
+      item.student,
+      item.step,
+      item.target,
+      item.score + "%"
+    ];
+
+    values.forEach((value, index) => {
+      const td = document.createElement("td");
+      td.textContent = value;
+
+      if (index === 4) {
+        td.style.fontWeight = "bold";
+        td.style.color =
+          item.score >= 80 ? "#16865c" : "#b7791f";
+      }
+
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+}
+
+function csvCell(value) {
+  let text = String(value ?? "");
+
+  // Prevent spreadsheet formula injection.
+  if (/^\s*[=+\-@\t\r]/.test(text)) {
+    text = "'" + text;
+  }
+
+  return '"' + text.replace(/"/g, '""') + '"';
+}
+
+function downloadCSV() {
+  if (!history.length) {
+    alert("저장할 연습 기록이 없습니다.");
+    return;
+  }
+
+  const rows = [
+    [
+      "날짜", "학생", "단계", "목표 문장",
+      "음성 인식 결과", "단어 일치율(%)"
+    ],
+    ...history.map(item => [
+      new Date(item.time).toLocaleString("ko-KR"),
+      item.student,
+      item.step,
+      item.target,
+      item.transcript,
+      item.score
+    ])
+  ];
+
+  const csv = "\uFEFF" +
+    rows.map(row => row.map(csvCell).join(",")).join("\r\n");
+
+  const blob = new Blob([csv], {
+    type: "text/csv;charset=utf-8;"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "Pronunciation_Practice_Results.csv";
+
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    selectStep(Number(tab.dataset.step));
+  });
+});
+
+$("listenNormal").onclick = () =>
+  speak(getLesson().text, 1);
+
+$("listenSlow").onclick = () =>
+  speak(getLesson().text, .65);
+
+$("listenRepeat").onclick = () =>
+  speak(getLesson().text, .9, 3);
+
+$("compareButton").onclick = speakComparison;
+$("micButton").onclick = startPractice;
+$("stopButton").onclick = stopPractice;
+$("nextButton").onclick = nextQuestion;
+$("prevButton").onclick = previousQuestion;
+$("resultNext").onclick = nextQuestion;
+
+$("retryButton").onclick = () => {
+  renderQuestion();
+  $("micButton").focus();
+};
+
+$("reviewButton").onclick = () => selectStep(step);
+
+$("nextStepButton").onclick = () => {
+  if (step < 4) selectStep(step + 1);
+};
+
+$("applyCustom").onclick = () => {
+  const text = $("customText").value.trim();
+
+  if (!/[a-zA-Z]/.test(text)) {
+    alert("연습할 영어 문장을 입력해 주세요.");
+    return;
+  }
+
+  customLesson = {
+    text,
+    meaning: "",
+    category: "Free Speaking",
+    tip: "전체 문장의 발음을 먼저 들어 보세요.\n의미 단위로 끊어 읽고 핵심 단어를 강조하세요.\n녹음한 발음을 모델 음성과 비교하세요."
+  };
+
+  selectStep(4);
+};
+
+$("studentName").onchange = saveData;
+
+$("accent").onchange = () => {
+  cancelSpeech();
+  refreshVoices();
+  saveData();
+};
+
+$("voiceSelect").onchange = cancelSpeech;
+$("downloadButton").onclick = downloadCSV;
+
+$("clearHistory").onclick = () => {
+  if (confirm("현재 브라우저에 저장된 모든 연습 기록을 삭제할까요?")) {
+    history = [];
+    saveData();
+    renderHistory();
+  }
+};
+
+window.addEventListener("beforeunload", () => {
+  cancelSpeech();
+  stopRecording();
+  if (recognition) {
+    try {
+      recognition.abort();
+    } catch (e) {}
+  }
+});
+
+renderQuestion();
+renderHistory();
+</script>
+</body>
+</html>
